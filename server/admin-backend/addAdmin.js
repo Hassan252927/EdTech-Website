@@ -1,7 +1,16 @@
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-// Simulate a "database" with an in-memory array
-const mockAdmins = [];
+// MongoDB Connection URL
+const mongoURL = 'mongodb://localhost:27017/adminDB';
+
+// Admin Schema
+const adminSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+});
+
+const Admin = mongoose.model('Admin', adminSchema);
 
 // Hash password function
 const hashPassword = async (plainTextPassword) => {
@@ -9,51 +18,29 @@ const hashPassword = async (plainTextPassword) => {
   return bcrypt.hash(plainTextPassword, salt);
 };
 
-// Simulate adding a new admin
+// Main function to add new admin
 const addNewAdmin = async (username, plainTextPassword) => {
   try {
+    // Connect to MongoDB
+    await mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });
     // Hash the password
     const hashedPassword = await hashPassword(plainTextPassword);
 
-    // Simulate storing the admin in memory
-    const newAdmin = { username, password: hashedPassword };
-    mockAdmins.push(newAdmin);
+    // Create a new admin record
+    const newAdmin = new Admin({ username, password: hashedPassword });
+    await newAdmin.save();
 
     console.log('New admin added successfully');
   } catch (error) {
     console.error('Error adding new admin:', error);
+  } finally {
+    // Disconnect from MongoDB
+    mongoose.disconnect();
   }
 };
 
-// Simulate logging in the user
-const loginAdmin = async (username, plainTextPassword) => {
-  try {
-    const admin = mockAdmins.find(admin => admin.username === username);
-    
-    if (!admin) {
-      return console.log('Admin not found!');
-    }
+// Replace 'newAdminUser' and 'newAdminPassword' with your actual username and password
+const username = 'JohnNew'; // Replace with the desired username
+const plainTextPassword = 'JohnNew321'; // Replace with the desired password
 
-    // Check if the password matches the hashed password
-    const isMatch = await bcrypt.compare(plainTextPassword, admin.password);
-
-    if (isMatch) {
-      console.log('Login successful!');
-    } else {
-      console.log('Invalid password!');
-    }
-  } catch (error) {
-    console.error('Error logging in:', error);
-  }
-};
-
-// Add new admin (for testing)
-const username = 'JohnNew@gmail';
-const plainTextPassword = 'JohnNew321';
 addNewAdmin(username, plainTextPassword);
-
-// Attempt to login with the correct credentials
-setTimeout(() => {
-  loginAdmin('JohnNew@gmail', 'JohnNew321'); // Correct password
-  loginAdmin('JohnNew@gmail', 'WrongPassword'); // Incorrect password
-}, 1000);

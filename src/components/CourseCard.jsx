@@ -22,8 +22,9 @@ const CourseCard = ({ courseBanner, courseTitle, author }) => {
             {courseTitle}
           </p>
           <p className="overflow-hidden text-sm">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonummy nibh euismod tincidunt ut laoreet dolore magna.
+          A Course Made with love and affection for you so you can 
+          master any field of your choice !!
+            
           </p>
           <p
             className="text-sm font-semibold text-gray-500 hover:text-gray-700"
