@@ -50,7 +50,18 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/*" element={<NotFound />} />
     </>
-  )
+  ),
+  // Add this script to your HTML or a separate JavaScript file
+  document.addEventListener('DOMContentLoaded', () => {
+  const cursor = document.createElement('div');
+  cursor.classList.add('custom-cursor');
+  document.body.appendChild(cursor);
+
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.top = `${e.clientY}px`;
+    cursor.style.left = `${e.clientX}px`;
+  });
+})
 );
 
 createRoot(document.getElementById("root")).render(

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import hack from "../../src/assets/hac.jpg";
 
@@ -51,7 +51,20 @@ const HackathonForm = () => {
     }
   };
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  useEffect(() => {
+    // Trigger the smooth page load effect by updating the state after a brief delay
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500); // Delay to allow the page to 'load' before transitioning in (adjust as needed)
+    
+    window.scrollTo(0, 0); // Ensure page scrolls to the top
+
+    return () => clearTimeout(timer); // Clean up timer on component unmount
+  }, []);
+
   return (
+    <main className={`main-content ${isLoaded ? "fade-in" : ""}`}>
     <section className="relative py-28 bg-gray-900">
       <div className="relative max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 text-gray-600 sm:px-4 md:px-8">
         {/* Left Column: Image and Details */}
@@ -383,7 +396,7 @@ const HackathonForm = () => {
                   name="referralSource"
                   value={formData.referralSource}
                   onChange={handleChange}
-                  className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-700"
+                  className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border border-gray-700 focus:border-gray-800 shadow-sm rounded-lgs"
                 />
               </div>
 
@@ -395,11 +408,11 @@ const HackathonForm = () => {
                   name="previousHackathon"
                   value={formData.previousHackathon}
                   onChange={handleChange}
-                  className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-700"
+                  className="w-full mt-2 px-3 py-2 text-black bg-transparent outline-none border border-gray-700 focus:border-gray-800 shadow-sm rounded-lgs"
                 >
-                  <option value="">Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
+                  <option className="text-black" value="">Select</option>
+                  <option className="text-black" value="Yes">Yes</option>
+                  <option className="text-black" value="No">No</option>
                 </select>
               </div>
 
@@ -412,7 +425,7 @@ const HackathonForm = () => {
                   value={formData.emergencyContact}
                   onChange={handleChange}
                   rows="2"
-                  className="mt-2 w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:border-blue-700 resize-none"
+                  className="w-full mt-2 px-3 py-2 text-white bg-transparent outline-none border border-gray-700 focus:border-gray-800 shadow-sm rounded-lgs resize-none"
                 />
               </div>
             </div>
@@ -427,6 +440,7 @@ const HackathonForm = () => {
         </div>
       </div>
     </section>
+    </main>
   );
 };
 

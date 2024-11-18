@@ -1,11 +1,28 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
+
+
+
 
 const Banner = () => {
   const [isVisible, setIsVisible] = useState("true");
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Trigger the smooth page load effect by updating the state after a brief delay
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500); // Delay to allow the page to 'load' before transitioning in (adjust as needed)
+    
+    window.scrollTo(0, 0); // Ensure page scrolls to the top
+
+    return () => clearTimeout(timer); // Clean up timer on component unmount
+  }, []);
+
   return (
     isVisible && (
+    <main className={`main-content ${isLoaded ? "fade-in" : ""}`}>
       <div className="bg-orange-600">
         <div className="max-w-screen-xl mx-auto px-4 py-3 flex items-start justify-between text-white sm:items-center md:px-8">
           <div className="flex-1 justify-center flex items-start gap-x-4 sm:items-center">
@@ -16,7 +33,7 @@ const Banner = () => {
               Get Registered for the upcoming Hackathon{" "}
               <Link
                 to="/hack"
-                className="font-semibold underline duration-150 hover:text-indigo-100 inline-flex items-center gap-x-1"
+                className="font-semibold underline text-black duration-150 hover:text-indigo-100 inline-flex items-center gap-x-1"
               >
                 Learn more
                 <svg
@@ -46,6 +63,7 @@ const Banner = () => {
           </button>
         </div>
       </div>
+    </main>
     )
   );
 };

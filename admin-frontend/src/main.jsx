@@ -10,6 +10,7 @@ import DataTable from "./components/formdata.jsx";
 import Layout from "./components/layout.jsx";
 import NotFound from "./components/NotFound.jsx";
 import StudentsTable from "./studentdata.jsx";
+import Profile from "./profile.jsx";
 
 // Define routes
 const routes = createBrowserRouter([
@@ -24,6 +25,10 @@ const routes = createBrowserRouter([
       {
         path: "admin", // New route for Admin Panel
         element: <AdminLogin />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
     
       {

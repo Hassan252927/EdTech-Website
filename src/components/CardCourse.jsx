@@ -35,7 +35,7 @@ const CardCourse = ({ courseBanner, courseTitle, author }) => {
           </div>
           <Link
               to="/detail"
-              className="text-white bg-gradient-to-r from-pink-500 via-pink-600 to-pink-700 hover:bg-gradient-to-br shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-bold rounded-lg text-sm px-8 py-2.5 text-center m-4"
+              className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-bold rounded-lg text-sm px-8 py-2.5 text-center m-4"
             >
               Enroll Now
             </Link>

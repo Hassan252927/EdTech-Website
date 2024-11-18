@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ed from "../assets/ed.png";
@@ -38,7 +38,21 @@ const LoginForm = () => {
     }
   };
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Trigger the smooth page load effect by updating the state after a brief delay
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500); // Delay to allow the page to 'load' before transitioning in (adjust as needed)
+    
+    window.scrollTo(0, 0); // Ensure page scrolls to the top
+
+    return () => clearTimeout(timer); // Clean up timer on component unmount
+  }, []);
+
   return (
+    <main className={`main-content ${isLoaded? "fade-in" : ""}`}>
     <div className="flex w-full  bg-blue-100">
       <div className="lg:w-[28rem] mx-auto my-auto flex flex-col justify-center pt-8 md:justify-start md:px-6 md:pt-0">
         <p className="text-left text-5xl font-bold">Welcome back!</p>
@@ -107,6 +121,7 @@ const LoginForm = () => {
         />
       </div>
     </div>
+    </main>
   );
 };
 

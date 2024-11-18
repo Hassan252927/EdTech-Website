@@ -20,9 +20,8 @@ export default () => {
                 With Ease!
               </h1>
               <p>
-              Master digital skills with ease and unlock new opportunities and embrace 
-              your journey with us for growth and success!  
-              journey with us
+                Empower your learning journey with expert-led and personalized
+                content. Lorem ipsum dolor sit amet.
               </p>
               {/* buttons */}
               <div className="flex items-center gap-x-3 sm:text-sm max-sm:flex-col">

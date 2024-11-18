@@ -8,14 +8,21 @@ import Banner from "../sections/Banner";
 const Navbar = () => {
   const [state, setState] = useState(false);
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    document.onclick = (e) => {
-      const target = e.target;
-      if (!target.closest(".menu-btn")) setState(false);
-    };
+    // Trigger the smooth page load effect by updating the state after a brief delay
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500); // Delay to allow the page to 'load' before transitioning in (adjust as needed)
+    
+    window.scrollTo(0, 0); // Ensure page scrolls to the top
+
+    return () => clearTimeout(timer); // Clean up timer on component unmount
   }, []);
 
   const Brand = () => (
+    <main className={`main-content ${isLoaded ? "fade-in" : ""}`}>
     <div className="flex items-center justify-between py-1 md:block">
       <Link to="/">
         <img
@@ -64,9 +71,11 @@ const Navbar = () => {
         </button>
       </div>
     </div>
+    </main>
   );
 
   return (
+    <main className={`main-content ${isLoaded ? "fade-in" : ""}`}>
     <header className="z-50 bg-gray-50 border shadow-md sticky top-0">
       <Banner />
       {/* another navbar which opens only when the burger icon get clicked */}
@@ -111,7 +120,7 @@ const Navbar = () => {
             <div className="items-center justify-end mt-6 space-y-6 md:flex md:mt-0">
               <NavLink
                 to="/register"
-                className="text-white bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 hover:bg-gradient-to-br shadow-lg shadow-gray-600/60 dark:shadow-lg dark:shadow-gray-900/90 font-bold rounded-lg text-sm px-6 py-2.5 text-center mr-2 mb-2"
+                className="text-white bg-gradient-to-r from-orange-600 via-orange-700 to-orange-800 hover:bg-gradient-to-br shadow-lg shadow-orange-600/60 dark:shadow-lg dark:shadow-orange-900/90 font-bold rounded-lg text-sm px-6 py-2.5 text-center mr-2 mb-2"
               >
                 Register
               </NavLink>
@@ -128,6 +137,7 @@ const Navbar = () => {
         </div>
       </nav>
     </header>
+    </main>
   );
 };
 
