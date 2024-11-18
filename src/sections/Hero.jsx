@@ -13,7 +13,8 @@ export default () => {
       ></div>
       <div className="relative pt-10">
         <section>
-          <div className="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex">
+          <div className="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex md:items-center">
+            {/* Left content */}
             <div className="flex-none space-y-5 max-w-xl">
               <h1 className="text-4xl text-gray-800 font-bold sm:text-6xl">
                 Master <span className="text-orange-600"> Digital Skills </span>{" "}
@@ -25,7 +26,7 @@ export default () => {
               </p>
               {/* buttons */}
               <div className="flex items-center gap-x-3 sm:text-sm max-sm:flex-col">
-              <button
+                <button
                   className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-bold rounded-lg text-sm px-10 py-4 text-center mr-2 mb-2"
                 >
                   Get Started
@@ -37,8 +38,13 @@ export default () => {
                 </button>
               </div>
             </div>
-            <div className="flex-1 hidden lg:block">
-              <img src={hero} className="max-w-xl" />
+            {/* Right content (image) */}
+            <div className="flex-1">
+              <img
+                src={hero}
+                className="max-w-full mx-auto sm:max-w-md md:max-w-xl mt-8 sm:mt-12"
+                alt="Hero"
+              />
             </div>
           </div>
         </section>

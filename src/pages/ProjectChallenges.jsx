@@ -37,10 +37,6 @@ const challenges = [
 const ProjectChallenges = () => {
   const [showChallengeInput, setShowChallengeInput] = useState(false);
   const [challengeIdea, setChallengeIdea] = useState("");
-  const [reward, setReward] = useState("");
-  const [isSpinning, setIsSpinning] = useState(false);
-  const [spinClass, setSpinClass] = useState(""); // Control wheel animation class
-  const [showWheel, setShowWheel] = useState(false); // State to control wheel visibility
   const [isLoaded, setIsLoaded] = useState(false); // State to trigger fade-in effect for the page
 
   useEffect(() => {
@@ -60,28 +56,6 @@ const ProjectChallenges = () => {
     } else {
       alert("Please write a challenge idea before submitting.");
     }
-  };
-
-  const handleSpinClick = () => {
-    if (isSpinning) return; // Prevent multiple spins
-
-    // Show the wheel when the button is clicked
-    setShowWheel(true);
-    setIsSpinning(true);
-    setSpinClass("spin");
-
-    // After 3 seconds, stop the wheel and show a random challenge idea
-    setTimeout(() => {
-      setIsSpinning(false);
-      setSpinClass(""); // Reset the spin animation
-
-      // Randomly select a reward/challenge idea
-      const randomReward = challenges[Math.floor(Math.random() * challenges.length)];
-      setReward(randomReward.title + " - " + randomReward.rewards);
-
-      // Hide the wheel after spin
-      setShowWheel(false);
-    }, 3000); // Match the spin duration with CSS animation time
   };
 
   return (
@@ -177,40 +151,7 @@ const ProjectChallenges = () => {
           </div>
         )}
       </div>
-
-      {/* Fun Challenge Idea Generator (Spin Wheel) */}
-      <div className="flex flex-col items-center justify-center mt-16">
-        <h2 className="text-3xl font-bold text-black">Need Inspiration?</h2>
-        <p className="mt-2 text-black">Try spinning the wheel for a random challenge idea!</p>
-
-        {/* Spin the Wheel Button */}
-        <button
-          onClick={handleSpinClick}
-          className="mt-4 px-6 py-3 text-white bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-700 rounded-lg font-semibold shadow-lg hover:scale-105 transition-all"
-        >
-          <FaRocket className="inline mr-2" /> Spin the Wheel!
-        </button>
-
-        {/* Conditionally render the spinning wheel */}
-        {showWheel && (
-          <div
-            className={`mt-8 w-48 h-48 rounded-full bg-gradient-to-r from-yellow-400 to-orange-600 relative ${spinClass}`}
-            style={{
-              transition: "transform 3s ease-out", // Control animation speed
-            }}
-          >
-            {/* The spinning wheel (with reward icons) */}
-          </div>
-        )}
-
-        {/* Display Selected Reward */}
-        {reward && !isSpinning && (
-          <div className="mt-6 text-lg text-black">
-            <p className="font-bold text-xl text-orange-400">{reward}</p>
-          </div>
-        )}
       </div>
-    </div>
     </main>
   );
 };

@@ -13,7 +13,7 @@ export const courseCardDetail = [
     courseBanner: course1,
     courseTitle: "Frontend Development with React",
     author: "Alexa Yu",
-  },
+  }, 
   {
     id: 2,
     key: "b",

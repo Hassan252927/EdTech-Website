@@ -1,12 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const CheckoutPage = () => {
 
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [])
+    // Trigger the smooth page load effect by updating the state after a brief delay
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500); // Delay to allow the page to 'load' before transitioning in (adjust as needed)
+    
+    window.scrollTo(0, 0); // Ensure page scrolls to the top
+
+    return () => clearTimeout(timer); // Clean up timer on component unmount
+  }, []);
 
   return (
+    <main className={`main-content ${isLoaded ? "fade-in" : ""}`}>
     <section className="relative py-28 bg-gray-900">
       <div className="relative max-w-screen-xl mx-auto text-gray-600 sm:px-4 md:px-8">
         <div className="max-w-lg space-y-3 px-4 sm:mx-auto sm:text-center sm:px-0">
@@ -164,6 +173,7 @@ const CheckoutPage = () => {
         </div>
       </div>
     </section>
+    </main>
   );
 };
 
