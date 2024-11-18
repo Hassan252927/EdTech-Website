@@ -26,19 +26,39 @@ const CardCourse = ({ courseBanner, courseTitle, author }) => {
         {/* buttons, tags */}
         <div className=" ">
           <div className="text-center text-sm flex max-md:flex-col p-2 w-full max-md:w-1/2">
-            <p className="rounded-full bg-green-100 m-1 px-2 py-0.5 text-green-700">
+            <p className="rounded-full bg-green-100 m-1 px-2 py-0.5 text-green-700"
+                          style={{
+                            position: 'fixed',
+                            bottom: '30px', // Distance from the bottom
+                            right: '236px',  // Distance from the right
+                            transform: 'translateX(0)', // Adjust if needed for your animation
+                }}>
               Advance level
             </p>
-            <p className="rounded-full bg-blue-100 m-1 px-2 py-0.5 text-blue-700">
+            <p className="rounded-full bg-blue-100 m-1 px-2 py-0.5 text-blue-700" 
+              style={{
+                position: 'fixed',
+                bottom: '0px', // Distance from the bottom
+                right: '240px',  // Distance from the right
+                transform: 'translateX(0)', // Adjust if needed for your animation
+              }}>
               160 Enrolled
             </p>
           </div>
           <Link
-              to="/detail"
-              className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-bold rounded-lg text-sm px-8 py-2.5 text-center m-4"
-            >
-              Enroll Now
-            </Link>
+  to="/detail"
+  className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br shadow-lg shadow-pink-500/50 dark:shadow-lg dark:shadow-pink-800/80 font-bold rounded-lg text-sm px-8 py-2.5 text-center m-12 transform transition-transform ease-in-out"
+  style={{
+    position: 'fixed',
+    bottom: '-32px', // Distance from the bottom
+    right: '-30px',  // Distance from the right
+    transform: 'translateX(0)', // Adjust if needed for your animation
+  }}
+>
+  Enroll Now
+</Link>
+
+
         </div>
       </div>
     </div>

@@ -14,6 +14,15 @@ export default () => {
       <div className="relative pt-10">
         <section>
           <div className="max-w-screen-xl mx-auto px-4 py-28 gap-12 text-gray-600 overflow-hidden md:px-8 md:flex md:items-center">
+            {/* Image for Mobile (Visible Only on Small Screens) */}
+            <div className="flex justify-center sm:hidden -mt-16 mb-8">
+              <img
+                src={hero}
+                className="max-w-full w-64 h-auto"
+                alt="Hero for Mobile"
+              />
+            </div>
+
             {/* Left content */}
             <div className="flex-none space-y-5 max-w-xl">
               <h1 className="text-4xl text-gray-800 font-bold sm:text-6xl">
@@ -38,11 +47,12 @@ export default () => {
                 </button>
               </div>
             </div>
-            {/* Right content (image) */}
-            <div className="flex-1">
+
+            {/* Right content (Image for larger screens) */}
+            <div className="flex-1 hidden sm:block">
               <img
                 src={hero}
-                className="max-w-full mx-auto sm:max-w-md md:max-w-xl mt-8 sm:mt-12"
+                className="max-w-full mx-auto sm:max-w-md md:max-w-xl"
                 alt="Hero"
               />
             </div>
